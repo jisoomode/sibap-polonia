@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>SIBAP Polonia | Pendaftaran BAP</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+    }
+    header, footer {
+      background: #0b3c5d;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #1d2731;
+      padding: 12px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+    section {
+      background: white;
+      margin: 20px;
+      padding: 30px;
+      border-radius: 10px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+    }
+    button {
+      padding: 12px 25px;
+      background: #0b3c5d;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .info {
+      background: #f1f5f9;
+      padding: 15px;
+      border-left: 5px solid #0b3c5d;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Pendaftaran BAP</h1>
+</header>
+
+<nav>
+  <a href="index.html">Beranda</a>
+  <a href="jadwal.html">Jadwal BAP</a>
+  <a href="daftar.html">Pendaftaran BAP</a>
+</nav>
+
+<section>
+  <div class="info">
+    <p>
+      Pendaftaran melalui halaman ini merupakan <strong>pendaftaran awal</strong>.
+      Penetapan jadwal BAP dilakukan oleh petugas <strong>Loket 3</strong>
+      setelah verifikasi kelengkapan berkas.
+    </p>
+  </div>
+
+  <form>
+    <label>Nama Lengkap</label>
+    <input type="text" placeholder="Masukkan nama lengkap">
+
+    <label>NIK</label>
+    <input type="text" placeholder="Masukkan NIK">
+
+    <label>Nomor HP Aktif</label>
+    <input type="text" placeholder="Masukkan nomor HP">
+
+    <label>Jenis Permohonan</label>
+    <select>
+      <option>Paspor Hilang</option>
+      <option>Paspor Rusak</option>
+      <option>Perubahan Data Paspor</option>
+    </select>
+
+    <label>Upload KTP</label>
+    <input type="file">
+
+    <label>Upload Kartu Keluarga</label>
+    <input type="file">
+
+    <label>Upload Akta Kelahiran</label>
+    <input type="file">
+
+    <div class="info">
+      <strong>PERHATIAN:</strong>
+      <p>
+        Upload <strong>Foto Halaman Data Paspor (Halaman Biodata)</strong>
+        <strong>WAJIB</strong> bagi pemohon:
+      </p>
+      <ul>
+        <li>Paspor Rusak</li>
+        <li>Perubahan Data Paspor</li>
+      </ul>
+    </div>
+
+    <label>Upload Foto Halaman Data Paspor</label>
+    <input type="file">
+
+    <button type="submit">Kirim Pendaftaran</button>
+  </form>
+</section>
+
+<footer>
+  <p>Kantor Imigrasi Kelas I Khusus TPI Polonia</p>
+</footer>
+
+</body>
+</html>
+
