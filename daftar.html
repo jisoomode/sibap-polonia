@@ -1,129 +1,203 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>SIBAP Polonia | Pendaftaran BAP</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-    }
-    header, footer {
-      background: #0b3c5d;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
-    nav {
-      background: #1d2731;
-      padding: 12px;
-      text-align: center;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-    }
-    section {
-      background: white;
-      margin: 20px;
-      padding: 30px;
-      border-radius: 10px;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-    }
-    button {
-      padding: 12px 25px;
-      background: #0b3c5d;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .info {
-      background: #f1f5f9;
-      padding: 15px;
-      border-left: 5px solid #0b3c5d;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      font-size: 14px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Pendaftaran BAP Paspor</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+header {
+  background: #0b3c5d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header img {
+  height: 55px;
+  margin: 0 10px;
+  vertical-align: middle;
+}
+
+main {
+  max-width: 850px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #0b3c5d;
+}
+
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+small {
+  color: #555;
+}
+
+button {
+  margin-top: 25px;
+  padding: 12px;
+  background: #0b3c5d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #092f48;
+}
+
+.info {
+  background: #eef3f7;
+  padding: 15px;
+  border-left: 5px solid #0b3c5d;
+  margin-bottom: 20px;
+}
+
+.hidden {
+  display: none;
+}
+</style>
+
+<script>
+function jenisPermohonan() {
+  const jenis = document.getElementById("jenis").value;
+  const hilang = document.getElementById("pasporHilang");
+
+  if (jenis === "Paspor Hilang") {
+    hilang.style.display = "block";
+  } else {
+    hilang.style.display = "none";
+  }
+}
+</script>
 </head>
+
 <body>
 
 <header>
-  <h1>Pendaftaran BAP</h1>
+  <img src="logo-kemenimipas.png">
+  <img src="logo-ditjen-imigrasi.png">
+  <h1>Pendaftaran BAP Paspor</h1>
+  <p>Kantor Imigrasi Kelas I Khusus TPI Polonia</p>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="jadwal.html">Jadwal BAP</a>
-  <a href="daftar.html">Pendaftaran BAP</a>
-</nav>
+<main>
 
-<section>
-  <div class="info">
-    <p>
-      Pendaftaran melalui halaman ini merupakan <strong>pendaftaran awal</strong>.
-      Penetapan jadwal BAP dilakukan oleh petugas <strong>Loket 3</strong>
-      setelah verifikasi kelengkapan berkas.
-    </p>
-  </div>
+<div class="info">
+  <p>
+    Pendaftaran ini merupakan <strong>pendaftaran awal</strong>. 
+    Jadwal BAP ditetapkan oleh petugas <strong>Loket 3</strong> setelah verifikasi berkas.
+  </p>
 
-  <form>
-    <label>Nama Lengkap</label>
-    <input type="text" placeholder="Masukkan nama lengkap">
+  <p>
+    Apabila dokumen telah <strong>terverifikasi</strong>, pemohon <strong>wajib datang langsung</strong>
+    ke Kantor Imigrasi Kelas I Khusus TPI Polonia dengan membawa seluruh berkas
+    untuk mendapatkan <strong>Tanda Terima Kedatangan BAP</strong>.
+  </p>
 
-    <label>NIK</label>
-    <input type="text" placeholder="Masukkan NIK">
+  <p>
+    CS Polonia: <strong>+62 811-6069-973</strong>
+  </p>
+</div>
 
-    <label>Nomor HP Aktif</label>
-    <input type="text" placeholder="Masukkan nomor HP">
+<h2>Formulir Pendaftaran BAP</h2>
 
-    <label>Jenis Permohonan</label>
-    <select>
-      <option>Paspor Hilang</option>
-      <option>Paspor Rusak</option>
-      <option>Perubahan Data Paspor</option>
-    </select>
+<form>
 
-    <label>Upload KTP</label>
-    <input type="file">
+<label>Nama Lengkap</label>
+<input type="text" required>
 
-    <label>Upload Kartu Keluarga</label>
-    <input type="file">
+<label>NIK</label>
+<input type="text" required>
 
-    <label>Upload Akta Kelahiran</label>
-    <input type="file">
+<label>Nomor KK</label>
+<input type="text" required>
 
-    <div class="info">
-      <strong>PERHATIAN:</strong>
-      <p>
-        Upload <strong>Foto Halaman Data Paspor (Halaman Biodata)</strong>
-        <strong>WAJIB</strong> bagi pemohon:
-      </p>
-      <ul>
-        <li>Paspor Rusak</li>
-        <li>Perubahan Data Paspor</li>
-      </ul>
-    </div>
+<label>Pekerjaan</label>
+<input type="text" required>
 
-    <label>Upload Foto Halaman Data Paspor</label>
-    <input type="file">
+<label>Tujuan Penggunaan Paspor</label>
+<select required>
+  <option value="">-- Pilih --</option>
+  <option>Wisata</option>
+  <option>Pekerjaan</option>
+  <option>Pendidikan</option>
+  <option>Ibadah</option>
+  <option>Lainnya</option>
+</select>
 
-    <button type="submit">Kirim Pendaftaran</button>
-  </form>
-</section>
+<label>Jenis Permohonan</label>
+<select id="jenis" onchange="jenisPermohonan()" required>
+  <option value="">-- Pilih --</option>
+  <option>Paspor Hilang</option>
+  <option>Paspor Rusak</option>
+  <option>Perubahan Data</option>
+</select>
 
-<footer>
-  <p>Kantor Imigrasi Kelas I Khusus TPI Polonia</p>
-</footer>
+<label>Upload KTP</label>
+<input type="file" required>
+
+<label>Upload Kartu Keluarga (KK)</label>
+<input type="file" required>
+
+<label>Upload Akta Kelahiran</label>
+<input type="file" required>
+
+<label>Upload Foto Halaman Data Paspor</label>
+<input type="file">
+<small>Wajib untuk paspor rusak dan perubahan data</small>
+
+<!-- KHUSUS PASPOR HILANG -->
+<div id="pasporHilang" class="hidden">
+
+  <label>Upload Surat Keterangan Hilang dari Kepolisian</label>
+  <input type="file" required>
+
+  <label>Upload Salinan Paspor Lama (jika ada)</label>
+  <input type="file">
+  <small>Apabila masih memiliki salinan paspor lama</small>
+
+</div>
+
+<label>Berkas Pendukung Lainnya </label>
+<input type="file">
+<small>Contoh: Surat Penetapan Perubahan Nama, Ijazah, Akte Nikah, dan Dokumen Pendukung Lainnya</small>
+
+<label>Keterangan Tambahan</label>
+<textarea rows="4"></textarea>
+
+<button type="submit">Kirim Pendaftaran</button>
+
+</form>
+
+</main>
 
 </body>
 </html>
+
+
 
