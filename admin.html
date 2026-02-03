@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Admin Loket 3 | SIBAP Polonia</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+header {
+  background: #0b3c5d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 1100px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #0b3c5d;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #eaeaea;
+}
+
+.status-menunggu { color: orange; font-weight: bold; }
+.status-verifikasi { color: green; font-weight: bold; }
+.status-perbaikan { color: red; font-weight: bold; }
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.verif { background: #0b3c5d; color: white; }
+.tolak { background: #b30000; color: white; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Dashboard Admin Loket 3</h1>
+  <p>Sistem Informasi BAP Paspor – Imigrasi Polonia</p>
+</header>
+
+<main>
+
+<h2>Daftar Pendaftaran Masuk</h2>
+
+<p>
+Halaman ini digunakan oleh petugas <strong>Loket 3</strong> untuk melakukan
+<strong>verifikasi kelengkapan berkas</strong> pemohon BAP paspor.
+</p>
+
+<table>
+<tr>
+  <th>No</th>
+  <th>Nama</th>
+  <th>Jenis Permohonan</th>
+  <th>Tanggal Pilihan</th>
+  <th>Status</th>
+  <th>Aksi</th>
+</tr>
+
+<tr>
+  <td>1</td>
+  <td>Andi Pratama</td>
+  <td>Paspor Hilang</td>
+  <td>6 Mei 2026</td>
+  <td class="status-menunggu">Menunggu Verifikasi</td>
+  <td>
+    <button class="verif">Verifikasi</button>
+    <button class="tolak">Perbaikan</button>
+  </td>
+</tr>
+
+<tr>
+  <td>2</td>
+  <td>Siti Rahma</td>
+  <td>Paspor Rusak</td>
+  <td>7 Mei 2026</td>
+  <td class="status-verifikasi">Terverifikasi</td>
+  <td>-</td>
+</tr>
+
+</table>
+
+<br>
+
+<h2>Catatan Penting</h2>
+<ul>
+  <li>Penetapan jadwal BAP dilakukan setelah berkas dinyatakan lengkap</li>
+  <li>Pemohon yang telah terverifikasi wajib hadir langsung ke kantor</li>
+  <li>Halaman ini merupakan simulasi sistem aktualisasi</li>
+</ul>
+
+</main>
+
+</body>
+</html>

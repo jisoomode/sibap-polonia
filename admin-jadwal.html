@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Admin Jadwal BAP | Loket 3</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+}
+
+header {
+  background: #0b3c5d;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+}
+
+h2 {
+  color: #0b3c5d;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: #eaeaea;
+}
+
+.status-tersedia {
+  color: green;
+  font-weight: bold;
+}
+
+.status-penuh {
+  color: red;
+  font-weight: bold;
+}
+
+button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.btn-tersedia {
+  background: green;
+  color: white;
+}
+
+.btn-penuh {
+  background: red;
+  color: white;
+}
+</style>
+
+<script>
+function setTersedia(id) {
+  const el = document.getElementById(id);
+  el.innerHTML = "TERSEDIA";
+  el.className = "status-tersedia";
+}
+
+function setPenuh(id) {
+  const el = document.getElementById(id);
+  el.innerHTML = "PENUH";
+  el.className = "status-penuh";
+}
+</script>
+</head>
+
+<body>
+
+<header>
+  <h1>Admin Jadwal BAP</h1>
+  <p>Kontrol Kuota & Jadwal – Loket 3</p>
+</header>
+
+<main>
+
+<h2>Pengaturan Jadwal BAP</h2>
+<p>
+Halaman ini digunakan oleh petugas <strong>Loket 3</strong> untuk mengatur
+ketersediaan jadwal BAP harian sesuai kuota yang ditetapkan.
+</p>
+
+<table>
+<tr>
+  <th>Tanggal</th>
+  <th>Kuota</th>
+  <th>Status</th>
+  <th>Aksi</th>
+</tr>
+
+<tr>
+  <td>4 Mei 2026</td>
+  <td>4 Pemohon</td>
+  <td id="s1" class="status-tersedia">TERSEDIA</td>
+  <td>
+    <button class="btn-tersedia" onclick="setTersedia('s1')">Tersedia</button>
+    <button class="btn-penuh" onclick="setPenuh('s1')">Penuh</button>
+  </td>
+</tr>
+
+<tr>
+  <td>5 Mei 2026</td>
+  <td>4 Pemohon</td>
+  <td id="s2" class="status-penuh">PENUH</td>
+  <td>
+    <button class="btn-tersedia" onclick="setTersedia('s2')">Tersedia</button>
+    <button class="btn-penuh" onclick="setPenuh('s2')">Penuh</button>
+  </td>
+</tr>
+
+<tr>
+  <td>6 Mei 2026</td>
+  <td>4 Pemohon</td>
+  <td id="s3" class="status-tersedia">TERSEDIA</td>
+  <td>
+    <button class="btn-tersedia" onclick="setTersedia('s3')">Tersedia</button>
+    <button class="btn-penuh" onclick="setPenuh('s3')">Penuh</button>
+  </td>
+</tr>
+
+</table>
+
+<br>
+
+<h2>Catatan Sistem</h2>
+<ul>
+  <li>Perubahan status dilakukan manual oleh petugas</li>
+  <li>Kuota harian maksimal 4 pemohon</li>
+  <li>Halaman ini merupakan simulasi aktualisasi</li>
+</ul>
+
+</main>
+
+</body>
+</html>
