@@ -187,33 +187,31 @@ Klik kembali untuk membuka <b>tersedia</b>.
 
 <!-- ================= SCRIPT ADMIN ================= -->
 <script>
-document.querySelectorAll(".calendar").forEach(cal=>{
-  const month = cal.dataset.month;
+let dataJadwal = JSON.parse(localStorage.getItem("jadwalBAP")) || {};
 
-  cal.querySelectorAll(".day").forEach(day=>{
-    if(day.classList.contains("holiday")) return;
+document.querySelectorAll(".day").forEach(hari => {
+  const tanggal = hari.dataset.tanggal;
 
-    const d = day.innerText.trim().padStart(2,"0");
-    const key = `BAP-${month}-${d}`;
+  // tampilkan status awal
+  if (dataJadwal[tanggal] === "penuh") {
+    hari.classList.add("holiday");
+  }
 
-    if(localStorage.getItem(key)==="full"){
-      day.classList.remove("available");
-      day.classList.add("holiday");
+  // klik admin
+  hari.onclick = () => {
+    if (dataJadwal[tanggal] === "penuh") {
+      dataJadwal[tanggal] = "tersedia";
+      hari.classList.remove("holiday");
+      hari.classList.add("available");
+    } else {
+      dataJadwal[tanggal] = "penuh";
+      hari.classList.remove("available");
+      hari.classList.add("holiday");
     }
 
-    day.addEventListener("click",()=>{
-      if(day.classList.contains("available")){
-        day.classList.remove("available");
-        day.classList.add("holiday");
-        localStorage.setItem(key,"full");
-      }else{
-        day.classList.remove("holiday");
-        day.classList.add("available");
-        localStorage.removeItem(key);
-        localStorage.setItem(key+"-kuota",4);
-      }
-    });
-  });
+    // SIMPAN KE LOCAL STORAGE
+    localStorage.setItem("jadwalBAP", JSON.stringify(dataJadwal));
+  };
 });
 </script>
 

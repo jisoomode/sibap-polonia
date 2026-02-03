@@ -228,6 +228,27 @@ document.querySelectorAll(".calendar").forEach(calendar=>{
   });
 });
 </script>
+<script>
+const dataJadwal = JSON.parse(localStorage.getItem("jadwalBAP")) || {};
+
+document.querySelectorAll(".day.available").forEach(hari => {
+  const tanggal = hari.dataset.tanggal;
+
+  // kalau admin set PENUH
+  if (dataJadwal[tanggal] === "penuh") {
+    hari.classList.remove("available");
+    hari.classList.add("holiday");
+    hari.style.cursor = "not-allowed";
+    hari.onclick = null;
+  } 
+  // kalau tersedia
+  else {
+    hari.onclick = () => {
+      window.location.href = "daftar.html?tanggal=" + tanggal;
+    };
+  }
+});
+</script>
 
 </body>
 </html>
