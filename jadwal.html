@@ -5,83 +5,72 @@
 <title>Jadwal BAP | SIBAP Polonia</title>
 
 <style>
-body {
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
 }
 
-header {
-  background: #0b3c5d;
-  color: white;
-  padding: 20px;
-  text-align: center;
+header{
+  background:#0c3b5f;
+  color:white;
+  padding:30px;
+  text-align:center;
 }
 
-nav {
-  background: #1d2731;
-  padding: 10px;
-  text-align: center;
+nav{
+  background:#1f2a33;
+  padding:10px;
+  text-align:center;
 }
 
-nav a {
-  color: white;
-  margin: 0 15px;
-  text-decoration: none;
+nav a{
+  color:white;
+  margin:0 15px;
+  text-decoration:none;
 }
 
-section {
-  background: white;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 10px;
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
 }
 
-h2 {
-  color: #0b3c5d;
-  text-align: center;
+.month{
+  text-align:center;
+  font-size:28px;
+  color:#0c3b5f;
+  margin-bottom:30px;
 }
 
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin-top: 20px;
+.weekdays, .calendar{
+  display:grid;
+  grid-template-columns: repeat(7,1fr);
+  gap:15px;
 }
 
-.day {
-  text-align: center;
-  font-weight: bold;
+.weekdays div{
+  text-align:center;
+  font-weight:bold;
 }
 
-.date {
-  padding: 15px;
-  border-radius: 8px;
-  text-align: center;
-  cursor: pointer;
+.day{
+  padding:22px;
+  text-align:center;
+  border-radius:10px;
+  font-size:18px;
 }
 
-.available {
-  background: #d4edda;
-  color: #155724;
+.available{
+  background:#d9f2dc;
+  color:#155724;
 }
 
-.available:hover {
-  background: #bfe5c8;
-}
-
-.holiday {
-  background: #f8d7da;
-  color: #721c24;
-  cursor: not-allowed;
-}
-
-footer {
-  background: #0b3c5d;
-  color: white;
-  text-align: center;
-  padding: 15px;
-  margin-top: 30px;
+.holiday{
+  background:#f8d7da;
+  color:#721c24;
 }
 </style>
 </head>
@@ -94,110 +83,117 @@ footer {
 </header>
 
 <nav>
-  <a href="index.html">Beranda</a>
-  <a href="jadwal.html">Jadwal</a>
-  <a href="daftar.html">Pendaftaran</a>
+  <a href="#">Beranda</a>
+  <a href="#">Jadwal</a>
+  <a href="#">Pendaftaran</a>
 </nav>
 
-<!-- APRIL 2026 -->
-<section>
-<h2>April 2026</h2>
+<div class="container">
+
+<!-- ================= APRIL 2026 ================= -->
+<div class="month">April 2026</div>
+
+<div class="weekdays">
+  <div>Min</div><div>Sen</div><div>Sel</div>
+  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+</div>
 
 <div class="calendar">
-  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
-  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
-
+  <!-- April 2026 mulai Rabu -->
   <div></div><div></div><div></div>
-  <div class="date available" onclick="location.href='daftar.html'">1</div>
-  <div class="date available" onclick="location.href='daftar.html'">2</div>
-  <div class="date available" onclick="location.href='daftar.html'">3</div>
-  <div class="date holiday">4</div>
 
-  <div class="date holiday">5</div>
-  <div class="date available" onclick="location.href='daftar.html'">6</div>
-  <div class="date available" onclick="location.href='daftar.html'">7</div>
-  <div class="date available" onclick="location.href='daftar.html'">8</div>
-  <div class="date available" onclick="location.href='daftar.html'">9</div>
-  <div class="date available" onclick="location.href='daftar.html'">10</div>
-  <div class="date holiday">11</div>
+  <div class="day available">1</div>
+  <div class="day available">2</div>
+  <div class="day available">3</div>
+  <div class="day holiday">4</div>
 
-  <div class="date holiday">12</div>
-  <div class="date available" onclick="location.href='daftar.html'">13</div>
-  <div class="date available" onclick="location.href='daftar.html'">14</div>
-  <div class="date available" onclick="location.href='daftar.html'">15</div>
-  <div class="date available" onclick="location.href='daftar.html'">16</div>
-  <div class="date available" onclick="location.href='daftar.html'">17</div>
-  <div class="date holiday">18</div>
+  <div class="day holiday">5</div>
+  <div class="day available">6</div>
+  <div class="day available">7</div>
+  <div class="day available">8</div>
+  <div class="day available">9</div>
+  <div class="day available">10</div>
+  <div class="day holiday">11</div>
 
-  <div class="date holiday">19</div>
-  <div class="date available" onclick="location.href='daftar.html'">20</div>
-  <div class="date available" onclick="location.href='daftar.html'">21</div>
-  <div class="date available" onclick="location.href='daftar.html'">22</div>
-  <div class="date available" onclick="location.href='daftar.html'">23</div>
-  <div class="date available" onclick="location.href='daftar.html'">24</div>
-  <div class="date holiday">25</div>
+  <div class="day holiday">12</div>
+  <div class="day available">13</div>
+  <div class="day available">14</div>
+  <div class="day available">15</div>
+  <div class="day available">16</div>
+  <div class="day available">17</div>
+  <div class="day holiday">18</div>
 
-  <div class="date holiday">26</div>
-  <div class="date available" onclick="location.href='daftar.html'">27</div>
-  <div class="date available" onclick="location.href='daftar.html'">28</div>
-  <div class="date available" onclick="location.href='daftar.html'">29</div>
-  <div class="date available" onclick="location.href='daftar.html'">30</div>
+  <div class="day holiday">19</div>
+  <div class="day available">20</div>
+  <div class="day available">21</div>
+  <div class="day available">22</div>
+  <div class="day available">23</div>
+  <div class="day available">24</div>
+  <div class="day holiday">25</div>
+
+  <div class="day holiday">26</div>
+  <div class="day available">27</div>
+  <div class="day available">28</div>
+  <div class="day available">29</div>
+  <div class="day available">30</div>
 </div>
-</section>
 
-<!-- MEI 2026 -->
-<section>
-<h2>Mei 2026</h2>
+<br><br>
+
+<!-- ================= MEI 2026 ================= -->
+<div class="month">Mei 2026</div>
+
+<div class="weekdays">
+  <div>Min</div><div>Sen</div><div>Sel</div>
+  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+</div>
 
 <div class="calendar">
-  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
-  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
+  <!-- Mei 2026 mulai Jumat -->
+  <div></div><div></div><div></div><div></div><div></div>
 
-  <div></div><div></div><div></div><div></div>
-  <div class="date available" onclick="location.href='daftar.html'">1</div>
-  <div class="date holiday">2</div>
+  <div class="day available">1</div>
+  <div class="day holiday">2</div>
 
-  <div class="date holiday">3</div>
-  <div class="date available" onclick="location.href='daftar.html'">4</div>
-  <div class="date available" onclick="location.href='daftar.html'">5</div>
-  <div class="date available" onclick="location.href='daftar.html'">6</div>
-  <div class="date available" onclick="location.href='daftar.html'">7</div>
-  <div class="date available" onclick="location.href='daftar.html'">8</div>
-  <div class="date holiday">9</div>
+  <div class="day holiday">3</div>
+  <div class="day available">4</div>
+  <div class="day available">5</div>
+  <div class="day available">6</div>
+  <div class="day available">7</div>
+  <div class="day available">8</div>
+  <div class="day holiday">9</div>
 
-  <div class="date holiday">10</div>
-  <div class="date available" onclick="location.href='daftar.html'">11</div>
-  <div class="date available" onclick="location.href='daftar.html'">12</div>
-  <div class="date available" onclick="location.href='daftar.html'">13</div>
-  <div class="date available" onclick="location.href='daftar.html'">14</div>
-  <div class="date available" onclick="location.href='daftar.html'">15</div>
-  <div class="date holiday">16</div>
+  <div class="day holiday">10</div>
+  <div class="day available">11</div>
+  <div class="day available">12</div>
+  <div class="day available">13</div>
+  <div class="day available">14</div>
+  <div class="day available">15</div>
+  <div class="day holiday">16</div>
 
-  <div class="date holiday">17</div>
-  <div class="date available" onclick="location.href='daftar.html'">18</div>
-  <div class="date available" onclick="location.href='daftar.html'">19</div>
-  <div class="date available" onclick="location.href='daftar.html'">20</div>
-  <div class="date available" onclick="location.href='daftar.html'">21</div>
-  <div class="date available" onclick="location.href='daftar.html'">22</div>
-  <div class="date holiday">23</div>
+  <div class="day holiday">17</div>
+  <div class="day available">18</div>
+  <div class="day available">19</div>
+  <div class="day available">20</div>
+  <div class="day available">21</div>
+  <div class="day available">22</div>
+  <div class="day holiday">23</div>
 
-  <div class="date holiday">24</div>
-  <div class="date available" onclick="location.href='daftar.html'">25</div>
-  <div class="date available" onclick="location.href='daftar.html'">26</div>
-  <div class="date available" onclick="location.href='daftar.html'">27</div>
-  <div class="date available" onclick="location.href='daftar.html'">28</div>
-  <div class="date available" onclick="location.href='daftar.html'">29</div>
-  <div class="date holiday">30</div>
+  <div class="day holiday">24</div>
+  <div class="day available">25</div>
+  <div class="day available">26</div>
+  <div class="day available">27</div>
+  <div class="day available">28</div>
+  <div class="day available">29</div>
+  <div class="day holiday">30</div>
 
-  <div class="date holiday">31</div>
+  <div class="day holiday">31</div>
 </div>
-</section>
 
-<footer>
-  <p>Verifikasi jadwal dilakukan oleh Loket 3<br>
-  Kantor Imigrasi Kelas I TPI Polonia</p>
-</footer>
-
+</div>
 </body>
 </html>
+
+
+
 
