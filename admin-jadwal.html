@@ -2,159 +2,155 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Admin Jadwal BAP | Loket 3</title>
+<title>Admin Jadwal BAP</title>
 
 <style>
 body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
   margin: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: #f4f6f8;
 }
 
 header {
-  background: #0b3c5d;
+  background: #7a1c1c;
   color: white;
-  padding: 20px;
   text-align: center;
+  padding: 30px 10px;
 }
 
-main {
-  max-width: 1000px;
+.container {
+  max-width: 1100px;
   margin: 30px auto;
   background: white;
-  padding: 25px;
-  border-radius: 8px;
+  border-radius: 12px;
+  padding: 30px;
 }
 
 h2 {
-  color: #0b3c5d;
+  text-align: center;
+  margin-top: 40px;
+  color: #7a1c1c;
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 15px;
+  margin-top: 25px;
 }
 
-th, td {
-  border: 1px solid #ccc;
-  padding: 10px;
+.day {
+  text-align: center;
+  font-weight: bold;
+}
+
+.date {
+  padding: 22px 0;
+  border-radius: 12px;
+  font-size: 16px;
   text-align: center;
 }
 
-th {
-  background: #eaeaea;
-}
-
-.status-tersedia {
-  color: green;
-  font-weight: bold;
-}
-
-.status-penuh {
-  color: red;
-  font-weight: bold;
-}
-
-button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 4px;
+.available {
+  background: #dff3e3;
+  color: #1e7e34;
   cursor: pointer;
-  margin: 2px;
 }
 
-.btn-tersedia {
-  background: green;
-  color: white;
+.full {
+  background: #adb5bd;
+  color: #212529;
+  cursor: pointer;
 }
 
-.btn-penuh {
-  background: red;
-  color: white;
+.libur {
+  background: #f8d7da;
+  color: #842029;
 }
 </style>
-
-<script>
-function setTersedia(id) {
-  const el = document.getElementById(id);
-  el.innerHTML = "TERSEDIA";
-  el.className = "status-tersedia";
-}
-
-function setPenuh(id) {
-  const el = document.getElementById(id);
-  el.innerHTML = "PENUH";
-  el.className = "status-penuh";
-}
-</script>
 </head>
 
 <body>
 
 <header>
-  <h1>Admin Jadwal BAP</h1>
-  <p>Kontrol Kuota & Jadwal – Loket 3</p>
+  <h1>ADMIN – Kelola Jadwal BAP</h1>
+  <p>Kantor Imigrasi Kelas I TPI Polonia</p>
 </header>
 
-<main>
+<div class="container">
 
-<h2>Pengaturan Jadwal BAP</h2>
-<p>
-Halaman ini digunakan oleh petugas <strong>Loket 3</strong> untuk mengatur
-ketersediaan jadwal BAP harian sesuai kuota yang ditetapkan.
-</p>
+<!-- ================= APRIL ================= -->
+<h2>April 2026</h2>
+<div class="calendar">
+  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
+  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
 
-<table>
-<tr>
-  <th>Tanggal</th>
-  <th>Kuota</th>
-  <th>Status</th>
-  <th>Aksi</th>
-</tr>
+  <div></div><div></div><div></div>
 
-<tr>
-  <td>4 Mei 2026</td>
-  <td>4 Pemohon</td>
-  <td id="s1" class="status-tersedia">TERSEDIA</td>
-  <td>
-    <button class="btn-tersedia" onclick="setTersedia('s1')">Tersedia</button>
-    <button class="btn-penuh" onclick="setPenuh('s1')">Penuh</button>
-  </td>
-</tr>
+<script>
+const april = document.currentScript.parentElement;
 
-<tr>
-  <td>5 Mei 2026</td>
-  <td>4 Pemohon</td>
-  <td id="s2" class="status-penuh">PENUH</td>
-  <td>
-    <button class="btn-tersedia" onclick="setTersedia('s2')">Tersedia</button>
-    <button class="btn-penuh" onclick="setPenuh('s2')">Penuh</button>
-  </td>
-</tr>
+for (let tgl = 1; tgl <= 30; tgl++) {
+  const hari = (tgl + 2) % 7;
+  const key = `2026-04-${tgl.toString().padStart(2,'0')}`;
 
-<tr>
-  <td>6 Mei 2026</td>
-  <td>4 Pemohon</td>
-  <td id="s3" class="status-tersedia">TERSEDIA</td>
-  <td>
-    <button class="btn-tersedia" onclick="setTersedia('s3')">Tersedia</button>
-    <button class="btn-penuh" onclick="setPenuh('s3')">Penuh</button>
-  </td>
-</tr>
+  if (hari === 0 || hari === 6) {
+    april.innerHTML += `<div class="date libur">${tgl}</div>`;
+  } else {
+    let status = localStorage.getItem("status-" + key) || "available";
+    april.innerHTML += `
+      <div class="date ${status}" onclick="toggle('${key}', this)">
+        ${tgl}
+      </div>`;
+  }
+}
+</script>
+</div>
 
-</table>
+<!-- ================= MEI ================= -->
+<h2>Mei 2026</h2>
+<div class="calendar">
+  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
+  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
 
-<br>
+  <div></div><div></div><div></div><div></div><div></div>
 
-<h2>Catatan Sistem</h2>
-<ul>
-  <li>Perubahan status dilakukan manual oleh petugas</li>
-  <li>Kuota harian maksimal 4 pemohon</li>
-  <li>Halaman ini merupakan simulasi aktualisasi</li>
-</ul>
+<script>
+const mei = document.currentScript.parentElement;
 
-</main>
+for (let tgl = 1; tgl <= 31; tgl++) {
+  const hari = (tgl + 4) % 7;
+  const key = `2026-05-${tgl.toString().padStart(2,'0')}`;
+
+  if (hari === 0 || hari === 6) {
+    mei.innerHTML += `<div class="date libur">${tgl}</div>`;
+  } else {
+    let status = localStorage.getItem("status-" + key) || "available";
+    mei.innerHTML += `
+      <div class="date ${status}" onclick="toggle('${key}', this)">
+        ${tgl}
+      </div>`;
+  }
+}
+</script>
+</div>
+
+</div>
+
+<script>
+function toggle(tanggal, el) {
+  if (el.classList.contains("available")) {
+    el.classList.remove("available");
+    el.classList.add("full");
+    localStorage.setItem("status-" + tanggal, "full");
+  } else {
+    el.classList.remove("full");
+    el.classList.add("available");
+    localStorage.setItem("status-" + tanggal, "available");
+  }
+}
+</script>
 
 </body>
 </html>
+
