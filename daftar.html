@@ -2,202 +2,233 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Pendaftaran BAP Paspor</title>
+<title<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pendaftaran BAP | SIBAP Polonia</title>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
+body{
+  font-family:"Segoe UI", Arial, sans-serif;
+  background:#f4f6f8;
+  margin:0;
 }
 
-header {
-  background: #0b3c5d;
-  color: white;
-  padding: 20px;
-  text-align: center;
+header{
+  background:#0b3c5d;
+  color:white;
+  padding:25px;
+  text-align:center;
 }
 
-header img {
-  height: 55px;
-  margin: 0 10px;
-  vertical-align: middle;
+.container{
+  max-width:850px;
+  margin:40px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
 }
 
-main {
-  max-width: 850px;
-  margin: 30px auto;
-  background: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+h2{
+  color:#0b3c5d;
+  margin-top:0;
 }
 
-h2 {
-  color: #0b3c5d;
+.info-box{
+  background:#f1f5f9;
+  padding:20px;
+  border-left:5px solid #0b3c5d;
+  border-radius:6px;
+  margin-bottom:25px;
+  font-size:15px;
 }
 
-label {
-  display: block;
-  margin-top: 15px;
-  font-weight: bold;
+label{
+  font-weight:600;
+  display:block;
+  margin-top:15px;
 }
 
-input, select, textarea {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+input, select{
+  width:100%;
+  padding:10px;
+  margin-top:5px;
+  border:1px solid #ccc;
+  border-radius:6px;
 }
 
-small {
-  color: #555;
+.small-text{
+  font-size:14px;
+  color:#555;
+  margin-top:5px;
 }
 
-button {
-  margin-top: 25px;
-  padding: 12px;
-  background: #0b3c5d;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+button{
+  margin-top:30px;
+  padding:14px;
+  width:100%;
+  background:#0b3c5d;
+  color:white;
+  border:none;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
 }
 
-button:hover {
-  background: #092f48;
-}
-
-.info {
-  background: #eef3f7;
-  padding: 15px;
-  border-left: 5px solid #0b3c5d;
-  margin-bottom: 20px;
-}
-
-.hidden {
-  display: none;
+button:hover{
+  background:#092c44;
 }
 </style>
-
-<script>
-function jenisPermohonan() {
-  const jenis = document.getElementById("jenis").value;
-  const hilang = document.getElementById("pasporHilang");
-
-  if (jenis === "Paspor Hilang") {
-    hilang.style.display = "block";
-  } else {
-    hilang.style.display = "none";
-  }
-}
-</script>
 </head>
 
 <body>
 
 <header>
-  <img src="logo-kemenimipas.png">
-  <img src="logo-ditjen-imigrasi.png">
   <h1>Pendaftaran BAP Paspor</h1>
   <p>Kantor Imigrasi Kelas I TPI Polonia</p>
 </header>
 
-<main>
+<div class="container">
 
-<div class="info">
+<div class="info-box">
   <p>
-    Pendaftaran ini merupakan <strong>pendaftaran awal</strong>. 
-    Jadwal BAP ditetapkan oleh petugas <strong>Loket 3</strong> setelah verifikasi berkas.
-  </p>
-
-  <p>
-    Apabila dokumen telah <strong>terverifikasi</strong>, pemohon <strong>wajib datang langsung</strong>
-    ke Kantor Imigrasi Kelas I Khusus TPI Polonia dengan membawa seluruh berkas
+    Pendaftaran ini merupakan <strong>pendaftaran awal</strong>.
+    Setelah kelengkapan dokumen diverifikasi oleh petugas <strong>Loket 3</strong>,
+    pemohon <strong>wajib datang</strong> ke Kantor Imigrasi Kelas I TPI Polonia
+    dengan membawa seluruh dokumen yang dilampirkan
     untuk mendapatkan <strong>Tanda Terima Kedatangan BAP</strong>.
   </p>
-
-  <p>
-    CS Polonia: <strong>+62 811-6069-973</strong>
-  </p>
 </div>
 
-<h2>Formulir Pendaftaran BAP</h2>
+<form id="formDaftar">
 
-<form>
+  <label>Tanggal BAP</label>
+  <input type="text" id="tanggal" readonly>
 
-<label>Nama Lengkap</label>
-<input type="text" required>
+  <label>Nama Lengkap</label>
+  <input type="text" required>
 
-<label>NIK</label>
-<input type="text" required>
+  <label>NIK</label>
+  <input type="text" required>
 
-<label>Nomor KK</label>
-<input type="text" required>
+  <label>Nomor HP Aktif</label>
+  <input type="text" required>
 
-<label>Pekerjaan</label>
-<input type="text" required>
+  <label>Jenis Permohonan</label>
+  <select id="jenis" required>
+    <option value="">-- Pilih --</option>
+    <option value="hilang">Paspor Hilang</option>
+    <option value="rusak">Paspor Rusak</option>
+    <option value="perubahan">Perubahan Data Paspor</option>
+  </select>
 
-<label>Tujuan Penggunaan Paspor</label>
-<select required>
-  <option value="">-- Pilih --</option>
-  <option>Wisata</option>
-  <option>Pekerjaan</option>
-  <option>Pendidikan</option>
-  <option>Ibadah</option>
-  <option>Lainnya</option>
-</select>
+  <label>Pekerjaan</label>
+  <input type="text" required>
 
-<label>Jenis Permohonan</label>
-<select id="jenis" onchange="jenisPermohonan()" required>
-  <option value="">-- Pilih --</option>
-  <option>Paspor Hilang</option>
-  <option>Paspor Rusak</option>
-  <option>Perubahan Data</option>
-</select>
+  <label>Tujuan Penggunaan Paspor</label>
+  <input type="text" required>
 
-<label>Upload KTP</label>
-<input type="file" required>
-
-<label>Upload Kartu Keluarga (KK)</label>
-<input type="file" required>
-
-<label>Upload Akta Kelahiran</label>
-<input type="file" required>
-
-<label>Upload Foto Halaman Data Paspor</label>
-<input type="file">
-<small>Wajib untuk paspor rusak dan perubahan data</small>
-
-<!-- KHUSUS PASPOR HILANG -->
-<div id="pasporHilang" class="hidden">
-
-  <label>Upload Surat Keterangan Hilang dari Kepolisian</label>
+  <label>Upload KTP</label>
   <input type="file" required>
 
-  <label>Upload Salinan Paspor Lama (jika ada)</label>
-  <input type="file">
-  <small>Apabila masih memiliki salinan paspor lama</small>
+  <label>Upload Kartu Keluarga</label>
+  <input type="file" required>
+
+  <label>Upload Akta Kelahiran</label>
+  <input type="file" required>
+
+  <!-- PASPOR HILANG -->
+  <div id="khususHilang" style="display:none;">
+    <label>Surat Keterangan Hilang dari Kepolisian</label>
+    <input type="file">
+
+    <label>Salinan Paspor Lama (jika ada)</label>
+    <input type="file">
+
+    <label>Berkas Pendukung</label>
+    <div class="small-text">Ijazah atau Buku Nikah</div>
+    <input type="file">
+  </div>
+
+  <!-- PASPOR RUSAK -->
+  <div id="khususRusak" style="display:none;">
+    <label>Foto Halaman Data Paspor</label>
+    <input type="file">
+
+    <label>Berkas Pendukung</label>
+    <div class="small-text">Ijazah atau Buku Nikah</div>
+    <input type="file">
+  </div>
+
+  <!-- PERUBAHAN DATA -->
+  <div id="khususPerubahan" style="display:none;">
+    <label>Berkas Pendukung</label>
+    <div class="small-text">
+      Surat Putusan Pengadilan / Ijazah / Buku Nikah
+    </div>
+    <input type="file">
+  </div>
+
+  <button type="submit">Kirim Pendaftaran</button>
+</form>
 
 </div>
 
-<label>Berkas Pendukung Lainnya </label>
-<input type="file">
-<small>Contoh: Surat Penetapan Perubahan Nama, Ijazah, Akte Nikah, dan Dokumen Pendukung Lainnya</small>
+<script>
+// ambil tanggal dari jadwal
+const tanggal = localStorage.getItem("tanggalBAP");
+document.getElementById("tanggal").value = tanggal || "-";
 
-<label>Keterangan Tambahan</label>
-<textarea rows="4"></textarea>
+// tampilkan berkas sesuai jenis
+document.getElementById("jenis").addEventListener("change", function(){
+  document.getElementById("khususHilang").style.display = "none";
+  document.getElementById("khususRusak").style.display = "none";
+  document.getElementById("khususPerubahan").style.display = "none";
 
-<button type="submit">Kirim Pendaftaran</button>
+  if(this.value==="hilang"){
+    document.getElementById("khususHilang").style.display="block";
+  }
+  if(this.value==="rusak"){
+    document.getElementById("khususRusak").style.display="block";
+  }
+  if(this.value==="perubahan"){
+    document.getElementById("khususPerubahan").style.display="block";
+  }
+});
 
-</form>
+// submit & kurangi kuota
+document.getElementById("formDaftar").addEventListener("submit", function(e){
+  e.preventDefault();
 
-</main>
+  let kuota = localStorage.getItem(tanggal+"-kuota");
+  kuota = kuota ? parseInt(kuota) : 4;
+  kuota--;
+
+  if(kuota<=0){
+    localStorage.setItem(tanggal+"-kuota",0);
+    localStorage.setItem(tanggal,"full");
+  }else{
+    localStorage.setItem(tanggal+"-kuota",kuota);
+  }
+
+  alert("Pendaftaran berhasil. Silakan menunggu verifikasi Loket 3.");
+  window.location.href="jadwal.html";
+});
+</script>
 
 </body>
 </html>
+
+  window.location.href="jadwal.html";
+});
+</script>
+
+</body>
+</html>
+
+
+
 
 
 

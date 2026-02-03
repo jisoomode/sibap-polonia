@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE htm<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
@@ -83,9 +83,9 @@ nav a{
 </header>
 
 <nav>
-  <a href="#">Beranda</a>
-  <a href="#">Jadwal</a>
-  <a href="#">Pendaftaran</a>
+  <a href="index.html">Beranda</a>
+  <a href="jadwal.html">Jadwal</a>
+  <a href="daftar.html">Pendaftaran</a>
 </nav>
 
 <div class="container">
@@ -98,8 +98,7 @@ nav a{
   <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
 </div>
 
-<div class="calendar">
-  <!-- April 2026 mulai Rabu -->
+<div class="calendar" data-month="2026-04">
   <div></div><div></div><div></div>
 
   <div class="day available">1</div>
@@ -148,8 +147,7 @@ nav a{
   <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
 </div>
 
-<div class="calendar">
-  <!-- Mei 2026 mulai Jumat -->
+<div class="calendar" data-month="2026-05">
   <div></div><div></div><div></div><div></div><div></div>
 
   <div class="day available">1</div>
@@ -191,8 +189,49 @@ nav a{
 </div>
 
 </div>
+
+<!-- ===== SCRIPT PENGHUBUNG ADMIN ===== -->
+<script>
+document.querySelectorAll(".calendar").forEach(calendar=>{
+  const month = calendar.getAttribute("data-month");
+
+  calendar.querySelectorAll(".day.available").forEach(day=>{
+    const date = day.innerText.trim();
+    const key = `${month}-${date}`;
+
+    if(localStorage.getItem(key)==="full"){
+      day.classList.remove("available");
+      day.classList.add("holiday");
+    }
+  });
+});
+</script>
+<script>
+document.querySelectorAll(".calendar").forEach(calendar=>{
+  const month = calendar.getAttribute("data-month");
+
+  calendar.querySelectorAll(".day.available").forEach(day=>{
+    const date = day.innerText.trim();
+    const key = `${month}-${date}`;
+
+    // cek status dari admin
+    if(localStorage.getItem(key)==="full"){
+      day.classList.remove("available");
+      day.classList.add("holiday");
+    }
+
+    // klik tanggal → ke pendaftaran
+    day.addEventListener("click", ()=>{
+      localStorage.setItem("tanggalBAP", key);
+      window.location.href = "daftar.html";
+    });
+  });
+});
+</script>
+
 </body>
 </html>
+
 
 
 

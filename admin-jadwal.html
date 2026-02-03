@@ -2,70 +2,71 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Admin Jadwal BAP</title>
+<title>Admin Jadwal BAP | SIBAP Polonia</title>
 
 <style>
-body {
-  margin: 0;
-  font-family: "Segoe UI", Arial, sans-serif;
-  background: #f4f6f8;
+body{
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f4f6f8;
 }
 
-header {
-  background: #7a1c1c;
-  color: white;
-  text-align: center;
-  padding: 30px 10px;
+header{
+  background:#0c3b5f;
+  color:white;
+  padding:30px;
+  text-align:center;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 30px auto;
-  background: white;
-  border-radius: 12px;
-  padding: 30px;
+.container{
+  max-width:1100px;
+  margin:40px auto;
+  background:white;
+  padding:40px;
+  border-radius:12px;
 }
 
-h2 {
-  text-align: center;
-  margin-top: 40px;
-  color: #7a1c1c;
+.month{
+  text-align:center;
+  font-size:26px;
+  color:#0c3b5f;
+  margin-bottom:25px;
 }
 
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 15px;
-  margin-top: 25px;
+.weekdays, .calendar{
+  display:grid;
+  grid-template-columns: repeat(7,1fr);
+  gap:15px;
 }
 
-.day {
-  text-align: center;
-  font-weight: bold;
+.weekdays div{
+  text-align:center;
+  font-weight:bold;
 }
 
-.date {
-  padding: 22px 0;
-  border-radius: 12px;
-  font-size: 16px;
-  text-align: center;
+.day{
+  padding:22px;
+  text-align:center;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;
 }
 
-.available {
-  background: #dff3e3;
-  color: #1e7e34;
-  cursor: pointer;
+.available{
+  background:#d9f2dc;
+  color:#155724;
 }
 
-.full {
-  background: #adb5bd;
-  color: #212529;
-  cursor: pointer;
+.holiday{
+  background:#f8d7da;
+  color:#721c24;
+  cursor:not-allowed;
 }
 
-.libur {
-  background: #f8d7da;
-  color: #842029;
+.note{
+  margin-top:30px;
+  font-size:14px;
+  color:#555;
 }
 </style>
 </head>
@@ -73,84 +74,151 @@ h2 {
 <body>
 
 <header>
-  <h1>ADMIN – Kelola Jadwal BAP</h1>
+  <h1>ADMIN JADWAL BAP</h1>
   <p>Kantor Imigrasi Kelas I TPI Polonia</p>
 </header>
 
 <div class="container">
 
-<!-- ================= APRIL ================= -->
-<h2>April 2026</h2>
-<div class="calendar">
-  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
-  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
+<!-- ================= APRIL 2026 ================= -->
+<div class="month">April 2026</div>
 
+<div class="weekdays">
+  <div>Min</div><div>Sen</div><div>Sel</div>
+  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+</div>
+
+<div class="calendar" data-month="2026-04">
   <div></div><div></div><div></div>
 
-<script>
-const april = document.currentScript.parentElement;
+  <div class="day available">1</div>
+  <div class="day available">2</div>
+  <div class="day available">3</div>
+  <div class="day holiday">4</div>
 
-for (let tgl = 1; tgl <= 30; tgl++) {
-  const hari = (tgl + 2) % 7;
-  const key = `2026-04-${tgl.toString().padStart(2,'0')}`;
+  <div class="day holiday">5</div>
+  <div class="day available">6</div>
+  <div class="day available">7</div>
+  <div class="day available">8</div>
+  <div class="day available">9</div>
+  <div class="day available">10</div>
+  <div class="day holiday">11</div>
 
-  if (hari === 0 || hari === 6) {
-    april.innerHTML += `<div class="date libur">${tgl}</div>`;
-  } else {
-    let status = localStorage.getItem("status-" + key) || "available";
-    april.innerHTML += `
-      <div class="date ${status}" onclick="toggle('${key}', this)">
-        ${tgl}
-      </div>`;
-  }
-}
-</script>
+  <div class="day holiday">12</div>
+  <div class="day available">13</div>
+  <div class="day available">14</div>
+  <div class="day available">15</div>
+  <div class="day available">16</div>
+  <div class="day available">17</div>
+  <div class="day holiday">18</div>
+
+  <div class="day holiday">19</div>
+  <div class="day available">20</div>
+  <div class="day available">21</div>
+  <div class="day available">22</div>
+  <div class="day available">23</div>
+  <div class="day available">24</div>
+  <div class="day holiday">25</div>
+
+  <div class="day holiday">26</div>
+  <div class="day available">27</div>
+  <div class="day available">28</div>
+  <div class="day available">29</div>
+  <div class="day available">30</div>
 </div>
 
-<!-- ================= MEI ================= -->
-<h2>Mei 2026</h2>
-<div class="calendar">
-  <div class="day">Min</div><div class="day">Sen</div><div class="day">Sel</div>
-  <div class="day">Rab</div><div class="day">Kam</div><div class="day">Jum</div><div class="day">Sab</div>
+<br><br>
 
+<!-- ================= MEI 2026 ================= -->
+<div class="month">Mei 2026</div>
+
+<div class="weekdays">
+  <div>Min</div><div>Sen</div><div>Sel</div>
+  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+</div>
+
+<div class="calendar" data-month="2026-05">
   <div></div><div></div><div></div><div></div><div></div>
 
-<script>
-const mei = document.currentScript.parentElement;
+  <div class="day available">1</div>
+  <div class="day holiday">2</div>
 
-for (let tgl = 1; tgl <= 31; tgl++) {
-  const hari = (tgl + 4) % 7;
-  const key = `2026-05-${tgl.toString().padStart(2,'0')}`;
+  <div class="day holiday">3</div>
+  <div class="day available">4</div>
+  <div class="day available">5</div>
+  <div class="day available">6</div>
+  <div class="day available">7</div>
+  <div class="day available">8</div>
+  <div class="day holiday">9</div>
 
-  if (hari === 0 || hari === 6) {
-    mei.innerHTML += `<div class="date libur">${tgl}</div>`;
-  } else {
-    let status = localStorage.getItem("status-" + key) || "available";
-    mei.innerHTML += `
-      <div class="date ${status}" onclick="toggle('${key}', this)">
-        ${tgl}
-      </div>`;
-  }
-}
-</script>
+  <div class="day holiday">10</div>
+  <div class="day available">11</div>
+  <div class="day available">12</div>
+  <div class="day available">13</div>
+  <div class="day available">14</div>
+  <div class="day available">15</div>
+  <div class="day holiday">16</div>
+
+  <div class="day holiday">17</div>
+  <div class="day available">18</div>
+  <div class="day available">19</div>
+  <div class="day available">20</div>
+  <div class="day available">21</div>
+  <div class="day available">22</div>
+  <div class="day holiday">23</div>
+
+  <div class="day holiday">24</div>
+  <div class="day available">25</div>
+  <div class="day available">26</div>
+  <div class="day available">27</div>
+  <div class="day available">28</div>
+  <div class="day available">29</div>
+  <div class="day holiday">30</div>
+
+  <div class="day holiday">31</div>
 </div>
 
+<p class="note">
+Klik tanggal hijau untuk menandai <b>penuh</b>.  
+Klik kembali untuk membuka <b>tersedia</b>.
+</p>
+
 </div>
 
+<!-- ================= SCRIPT ADMIN ================= -->
 <script>
-function toggle(tanggal, el) {
-  if (el.classList.contains("available")) {
-    el.classList.remove("available");
-    el.classList.add("full");
-    localStorage.setItem("status-" + tanggal, "full");
-  } else {
-    el.classList.remove("full");
-    el.classList.add("available");
-    localStorage.setItem("status-" + tanggal, "available");
-  }
-}
+document.querySelectorAll(".calendar").forEach(cal=>{
+  const month = cal.dataset.month;
+
+  cal.querySelectorAll(".day").forEach(day=>{
+    if(day.classList.contains("holiday")) return;
+
+    const d = day.innerText.trim().padStart(2,"0");
+    const key = `BAP-${month}-${d}`;
+
+    if(localStorage.getItem(key)==="full"){
+      day.classList.remove("available");
+      day.classList.add("holiday");
+    }
+
+    day.addEventListener("click",()=>{
+      if(day.classList.contains("available")){
+        day.classList.remove("available");
+        day.classList.add("holiday");
+        localStorage.setItem(key,"full");
+      }else{
+        day.classList.remove("holiday");
+        day.classList.add("available");
+        localStorage.removeItem(key);
+        localStorage.setItem(key+"-kuota",4);
+      }
+    });
+  });
+});
 </script>
 
 </body>
 </html>
+
+
 
