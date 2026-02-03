@@ -1,257 +1,148 @@
-<!DOCTYPE htm<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Jadwal BAP | SIBAP Polonia</title>
+<title>Jadwal BAP Paspor</title>
 
 <style>
-body{
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#f4f6f8;
-}
-
-header{
-  background:#0c3b5f;
-  color:white;
-  padding:30px;
-  text-align:center;
-}
-
-nav{
-  background:#1f2a33;
-  padding:10px;
-  text-align:center;
-}
-
-nav a{
-  color:white;
-  margin:0 15px;
-  text-decoration:none;
-}
-
-.container{
-  max-width:1100px;
-  margin:40px auto;
-  background:white;
-  padding:40px;
-  border-radius:12px;
-}
-
-.month{
-  text-align:center;
-  font-size:28px;
-  color:#0c3b5f;
-  margin-bottom:30px;
-}
-
-.weekdays, .calendar{
-  display:grid;
-  grid-template-columns: repeat(7,1fr);
-  gap:15px;
-}
-
-.weekdays div{
-  text-align:center;
-  font-weight:bold;
-}
-
-.day{
-  padding:22px;
-  text-align:center;
-  border-radius:10px;
-  font-size:18px;
-}
-
-.available{
-  background:#d9f2dc;
-  color:#155724;
-}
-
-.holiday{
-  background:#f8d7da;
-  color:#721c24;
-}
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:#0c3b5f;color:#fff;padding:30px;text-align:center}
+.container{max-width:1100px;margin:40px auto;background:#fff;padding:40px;border-radius:12px}
+.month{text-align:center;font-size:26px;color:#0c3b5f;margin:30px 0}
+.weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:15px}
+.weekdays div{text-align:center;font-weight:bold}
+.day{padding:22px;text-align:center;border-radius:10px;font-size:18px}
+.available{background:#d9f2dc;color:#155724;cursor:pointer}
+.full{background:#f8d7da;color:#721c24;cursor:not-allowed}
+.holiday{background:#eee;color:#999;cursor:not-allowed}
 </style>
 </head>
 
 <body>
 
 <header>
-  <h1>Jadwal BAP Paspor</h1>
-  <p>Kantor Imigrasi Kelas I TPI Polonia</p>
+<h1>Jadwal BAP Paspor</h1>
+<p>Kantor Imigrasi Kelas I TPI Polonia</p>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="jadwal.html">Jadwal</a>
-  <a href="daftar.html">Pendaftaran</a>
-</nav>
+<div class="container" id="calendar"></div>
 
-<div class="container">
+<script>
+const months=[
+ {name:"April 2026",days:30,start:3},
+ {name:"Mei 2026",days:31,start:5}
+];
 
-<!-- ================= APRIL 2026 ================= -->
-<div class="month">April 2026</div>
+const calendar=document.getElementById("calendar");
+let status=JSON.parse(localStorage.getItem("jadwalStatus"))||{};
 
-<div class="weekdays">
+months.forEach(m=>{
+ calendar.innerHTML+=`
+ <div class="month">${m.name}</div>
+ <div class="weekdays">
   <div>Min</div><div>Sen</div><div>Sel</div>
   <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
-</div>
+ </div>
+ <div class="calendar"></div>`;
 
-<div class="calendar" data-month="2026-04">
-  <div></div><div></div><div></div>
+ let grid=calendar.lastElementChild;
 
-  <div class="day available">1</div>
-  <div class="day available">2</div>
-  <div class="day available">3</div>
-  <div class="day holiday">4</div>
+ for(let i=0;i<m.start;i++) grid.innerHTML+="<div></div>";
 
-  <div class="day holiday">5</div>
-  <div class="day available">6</div>
-  <div class="day available">7</div>
-  <div class="day available">8</div>
-  <div class="day available">9</div>
-  <div class="day available">10</div>
-  <div class="day holiday">11</div>
+ for(let d=1;d<=m.days;d++){
+  let key=m.name+"-"+d;
+  let dow=(m.start+d-1)%7;
 
-  <div class="day holiday">12</div>
-  <div class="day available">13</div>
-  <div class="day available">14</div>
-  <div class="day available">15</div>
-  <div class="day available">16</div>
-  <div class="day available">17</div>
-  <div class="day holiday">18</div>
+  let cls="available";
+  if(dow===0 || dow===6) cls="holiday";
+  if(status[key]==="full") cls="full";
 
-  <div class="day holiday">19</div>
-  <div class="day available">20</div>
-  <div class="day available">21</div>
-  <div class="day available">22</div>
-  <div class="day available">23</div>
-  <div class="day available">24</div>
-  <div class="day holiday">25</div>
-
-  <div class="day holiday">26</div>
-  <div class="day available">27</div>
-  <div class="day available">28</div>
-  <div class="day available">29</div>
-  <div class="day available">30</div>
-</div>
-
-<br><br>
-
-<!-- ================= MEI 2026 ================= -->
-<div class="month">Mei 2026</div>
-
-<div class="weekdays">
-  <div>Min</div><div>Sen</div><div>Sel</div>
-  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
-</div>
-
-<div class="calendar" data-month="2026-05">
-  <div></div><div></div><div></div><div></div><div></div>
-
-  <div class="day available">1</div>
-  <div class="day holiday">2</div>
-
-  <div class="day holiday">3</div>
-  <div class="day available">4</div>
-  <div class="day available">5</div>
-  <div class="day available">6</div>
-  <div class="day available">7</div>
-  <div class="day available">8</div>
-  <div class="day holiday">9</div>
-
-  <div class="day holiday">10</div>
-  <div class="day available">11</div>
-  <div class="day available">12</div>
-  <div class="day available">13</div>
-  <div class="day available">14</div>
-  <div class="day available">15</div>
-  <div class="day holiday">16</div>
-
-  <div class="day holiday">17</div>
-  <div class="day available">18</div>
-  <div class="day available">19</div>
-  <div class="day available">20</div>
-  <div class="day available">21</div>
-  <div class="day available">22</div>
-  <div class="day holiday">23</div>
-
-  <div class="day holiday">24</div>
-  <div class="day available">25</div>
-  <div class="day available">26</div>
-  <div class="day available">27</div>
-  <div class="day available">28</div>
-  <div class="day available">29</div>
-  <div class="day holiday">30</div>
-
-  <div class="day holiday">31</div>
-</div>
-
-</div>
-
-<!-- ===== SCRIPT PENGHUBUNG ADMIN ===== -->
-<script>
-document.querySelectorAll(".calendar").forEach(calendar=>{
-  const month = calendar.getAttribute("data-month");
-
-  calendar.querySelectorAll(".day.available").forEach(day=>{
-    const date = day.innerText.trim();
-    const key = `${month}-${date}`;
-
-    if(localStorage.getItem(key)==="full"){
-      day.classList.remove("available");
-      day.classList.add("holiday");
-    }
-  });
+  grid.innerHTML+=`<div class="day ${cls}" data-key="${key}">${d}</div>`;
+ }
 });
-</script>
-<script>
-document.querySelectorAll(".calendar").forEach(calendar=>{
-  const month = calendar.getAttribute("data-month");
 
-  calendar.querySelectorAll(".day.available").forEach(day=>{
-    const date = day.innerText.trim();
-    const key = `${month}-${date}`;
-
-    // cek status dari admin
-    if(localStorage.getItem(key)==="full"){
-      day.classList.remove("available");
-      day.classList.add("holiday");
-    }
-
-    // klik tanggal → ke pendaftaran
-    day.addEventListener("click", ()=>{
-      localStorage.setItem("tanggalBAP", key);
-      window.location.href = "daftar.html";
-    });
-  });
-});
-</script>
-<script>
-const dataJadwal = JSON.parse(localStorage.getItem("jadwalBAP")) || {};
-
-document.querySelectorAll(".day.available").forEach(hari => {
-  const tanggal = hari.dataset.tanggal;
-
-  // kalau admin set PENUH
-  if (dataJadwal[tanggal] === "penuh") {
-    hari.classList.remove("available");
-    hari.classList.add("holiday");
-    hari.style.cursor = "not-allowed";
-    hari.onclick = null;
-  } 
-  // kalau tersedia
-  else {
-    hari.onclick = () => {
-      window.location.href = "daftar.html?tanggal=" + tanggal;
-    };
-  }
+document.querySelectorAll(".day.available").forEach(d=>{
+ d.onclick=()=>{
+  location.href="daftar.html?tanggal="+d.dataset.key;
+ };
 });
 </script>
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Jadwal BAP Paspor</title>
+
+<style>
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:#0c3b5f;color:#fff;padding:30px;text-align:center}
+.container{max-width:1100px;margin:40px auto;background:#fff;padding:40px;border-radius:12px}
+.month{text-align:center;font-size:26px;color:#0c3b5f;margin:30px 0}
+.weekdays,.calendar{display:grid;grid-template-columns:repeat(7,1fr);gap:15px}
+.weekdays div{text-align:center;font-weight:bold}
+.day{padding:22px;text-align:center;border-radius:10px;font-size:18px}
+.available{background:#d9f2dc;color:#155724;cursor:pointer}
+.full{background:#f8d7da;color:#721c24;cursor:not-allowed}
+.holiday{background:#eee;color:#999;cursor:not-allowed}
+</style>
+</head>
+
+<body>
+
+
+
+<div class="container" id="calendar"></div>
+
+<script>
+const months=[
+ {name:"April 2026",days:30,start:3},
+ {name:"Mei 2026",days:31,start:5}
+];
+
+const calendar=document.getElementById("calendar");
+let status=JSON.parse(localStorage.getItem("jadwalStatus"))||{};
+
+months.forEach(m=>{
+ calendar.innerHTML+=`
+ <div class="month">${m.name}</div>
+ <div class="weekdays">
+  <div>Min</div><div>Sen</div><div>Sel</div>
+  <div>Rab</div><div>Kam</div><div>Jum</div><div>Sab</div>
+ </div>
+ <div class="calendar"></div>`;
+
+ let grid=calendar.lastElementChild;
+
+ for(let i=0;i<m.start;i++) grid.innerHTML+="<div></div>";
+
+ for(let d=1;d<=m.days;d++){
+  let key=m.name+"-"+d;
+  let dow=(m.start+d-1)%7;
+
+  let cls="available";
+  if(dow===0 || dow===6) cls="holiday";
+  if(status[key]==="full") cls="full";
+
+  grid.innerHTML+=`<div class="day ${cls}" data-key="${key}">${d}</div>`;
+ }
+});
+
+document.querySelectorAll(".day.available").forEach(d=>{
+ d.onclick=()=>{
+  location.href="daftar.html?tanggal="+d.dataset.key;
+ };
+});
+</script>
+
+</body>
+</html>
+
+
+
+
 
 
 
