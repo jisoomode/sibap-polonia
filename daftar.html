@@ -2,20 +2,23 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Pendaftaran BAP</title>
+<title>Pendaftaran BAP | SIBAP Polonia</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-body{font-family:Arial;background:#f5f5f5}
-.container{max-width:700px;margin:auto;background:#fff;padding:20px;border-radius:6px}
-label{display:block;margin-top:15px;font-weight:bold}
-input,select{width:100%;padding:10px;margin-top:5px}
-.hidden{display:none}
-button{margin-top:20px;padding:12px;width:100%;background:#0a4ea1;color:#fff;border:none;border-radius:4px}
+body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fa;margin:0}
+.container{max-width:800px;margin:40px auto;background:#fff;padding:30px;border-radius:8px}
+h2{margin-bottom:20px}
+label{font-weight:bold;margin-top:15px;display:block}
+input,select{width:100%;padding:10px;margin-top:6px;border:1px solid #ccc;border-radius:4px}
+.file-box{background:#f1f1f1;padding:15px;border-radius:6px;margin-top:10px}
+button{margin-top:25px;padding:12px;background:#0b5ed7;color:#fff;border:none;border-radius:5px;font-size:16px;cursor:pointer}
+button:hover{background:#084298}
 </style>
 </head>
-<body>
 
+<body>
 <div class="container">
-<h2>Pendaftaran BAP</h2>
+<h2>Form Pendaftaran BAP</h2>
 
 <form id="formDaftar">
 
@@ -28,103 +31,105 @@ button{margin-top:20px;padding:12px;width:100%;background:#0a4ea1;color:#fff;bor
 <label>NIK</label>
 <input type="text" required>
 
-<label>No HP</label>
+<label>Nomor HP Aktif</label>
 <input type="text" required>
 
 <label>Jenis Permohonan</label>
 <select id="jenis" required>
-<option value="">-- Pilih --</option>
-<option value="hilang">Paspor Hilang</option>
-<option value="rusak">Paspor Rusak</option>
-<option value="perubahan">Perubahan Data</option>
+  <option value="">-- Pilih --</option>
+  <option value="hilang">Paspor Hilang</option>
+  <option value="rusak">Paspor Rusak</option>
+  <option value="perubahan">Perubahan Data</option>
 </select>
 
-<!-- SYARAT WAJIB -->
-<div id="wajib" class="hidden">
-<label>Upload KTP</label><input type="file" required>
-<label>Upload KK</label><input type="file" required>
-<label>Upload Akte Lahir</label><input type="file" required>
-</div>
+<div id="berkas"></div>
 
-<div id="polisi" class="hidden">
-<label>Surat Kehilangan Polisi</label>
-<input type="file">
-</div>
-
-<div id="paspor" class="hidden">
-<label>Halaman Data Paspor</label>
-<input type="file">
-</div>
-
-<div id="pengadilan" class="hidden">
-<label>Surat Penetapan Pengadilan</label>
-<input type="file">
-</div>
-
-<div id="pendukung" class="hidden">
-<label>Berkas Pendukung (Ijazah / Akte Nikah)</label>
-<input type="file">
-</div>
-
-<button type="submit">DAFTAR</button>
+<button type="submit">Daftar</button>
 </form>
 </div>
 
 <script>
-const params = new URLSearchParams(location.search);
-const tanggal = params.get("tanggal");
-if(!tanggal){alert("Tanggal tidak valid");location.href="jadwal.html";}
+// ================= AMBIL TANGGAL DARI URL =================
+const params = new URLSearchParams(window.location.search);
+let tanggal = params.get("tanggal");
+
+if(!tanggal){
+  document.body.innerHTML="<h2 style='text-align:center'>Tanggal tidak valid</h2>";
+  throw new Error("Tanggal kosong");
+}
+
+tanggal = decodeURIComponent(tanggal);
 document.getElementById("tanggalBAP").value = tanggal;
 
+// ================= ATUR BERKAS =================
+const berkasDiv = document.getElementById("berkas");
 const jenis = document.getElementById("jenis");
-const wajib = document.getElementById("wajib");
-const polisi = document.getElementById("polisi");
-const paspor = document.getElementById("paspor");
-const pengadilan = document.getElementById("pengadilan");
-const pendukung = document.getElementById("pendukung");
 
-jenis.onchange = ()=>{
-  wajib.classList.remove("hidden");
-  pendukung.classList.remove("hidden");
-
-  polisi.classList.add("hidden");
-  paspor.classList.add("hidden");
-  pengadilan.classList.add("hidden");
-
-  polisi.querySelector("input").required=false;
-  paspor.querySelector("input").required=false;
-  pengadilan.querySelector("input").required=false;
+jenis.addEventListener("change", ()=>{
+  berkasDiv.innerHTML = "";
+  let html = "";
 
   if(jenis.value==="hilang"){
-    polisi.classList.remove("hidden");
-    polisi.querySelector("input").required=true;
+    html = `
+    <div class="file-box">
+      <b>Dokumen Wajib</b>
+      <input type="file" required> KTP<br><br>
+      <input type="file" required> KK<br><br>
+      <input type="file" required> Akte Lahir<br><br>
+      <input type="file" required> Surat Kehilangan Polisi<br><br>
+      <input type="file" required> Halaman Data Paspor
+    </div>
+    <div class="file-box">
+      <b>Berkas Pendukung</b>
+      <input type="file"> Ijazah / Akte Nikah
+    </div>`;
   }
+
   if(jenis.value==="rusak"){
-    paspor.classList.remove("hidden");
-    paspor.querySelector("input").required=true;
+    html = `
+    <div class="file-box">
+      <b>Dokumen Wajib</b>
+      <input type="file" required> KTP<br><br>
+      <input type="file" required> KK<br><br>
+      <input type="file" required> Akte Lahir<br><br>
+      <input type="file" required> Halaman Data Paspor
+    </div>
+    <div class="file-box">
+      <b>Berkas Pendukung</b>
+      <input type="file"> Ijazah / Akte Nikah
+    </div>`;
   }
+
   if(jenis.value==="perubahan"){
-    pengadilan.classList.remove("hidden");
-    pengadilan.querySelector("input").required=true;
+    html = `
+    <div class="file-box">
+      <b>Dokumen Wajib</b>
+      <input type="file" required> KTP<br><br>
+      <input type="file" required> KK<br><br>
+      <input type="file" required> Akte Lahir<br><br>
+      <input type="file" required> Surat Penetapan Pengadilan
+    </div>
+    <div class="file-box">
+      <b>Berkas Pendukung</b>
+      <input type="file"> Ijazah / Akte Nikah
+    </div>`;
   }
-};
 
-document.getElementById("formDaftar").onsubmit=e=>{
-  e.preventDefault();
+  berkasDiv.innerHTML = html;
+});
 
-  const data = JSON.parse(localStorage.getItem("dataPemohon")||"[]");
-  data.push({tanggal,jenis:jenis.value});
-  localStorage.setItem("dataPemohon",JSON.stringify(data));
-
-  const kuota = JSON.parse(localStorage.getItem("kuotaBAP")||"{}");
-  kuota[tanggal]="penuh";
-  localStorage.setItem("kuotaBAP",JSON.stringify(kuota));
-
+// ================= SIMPAN KE ADMIN =================
+document.getElementById("formDaftar").addEventListener("submit",()=>{
+  let data = JSON.parse(localStorage.getItem("pendaftaran") || "[]");
+  data.push({
+    tanggal: tanggal,
+    jenis: jenis.value,
+    waktu: new Date().toLocaleString()
+  });
+  localStorage.setItem("pendaftaran",JSON.stringify(data));
   alert("Pendaftaran berhasil");
-  location.href="jadwal.html";
-};
+});
 </script>
-
 </body>
 </html>
 
