@@ -1,65 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Pendaftaran BAP</title>
+<style>
+body{font-family:Arial;background:#f5f5f5}
+.container{max-width:700px;margin:auto;background:#fff;padding:20px;border-radius:6px}
+label{display:block;margin-top:15px;font-weight:bold}
+input,select{width:100%;padding:10px;margin-top:5px}
+.hidden{display:none}
+button{margin-top:20px;padding:12px;width:100%;background:#0a4ea1;color:#fff;border:none;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h2>Pendaftaran BAP</h2>
+
+<form id="formDaftar">
+
+<label>Tanggal BAP</label>
+<input type="text" id="tanggalBAP" readonly>
+
+<label>Nama Lengkap</label>
+<input type="text" required>
+
+<label>NIK</label>
+<input type="text" required>
+
+<label>No HP</label>
+<input type="text" required>
+
+<label>Jenis Permohonan</label>
+<select id="jenis" required>
+<option value="">-- Pilih --</option>
+<option value="hilang">Paspor Hilang</option>
+<option value="rusak">Paspor Rusak</option>
+<option value="perubahan">Perubahan Data</option>
+</select>
+
+<!-- SYARAT WAJIB -->
+<div id="wajib" class="hidden">
+<label>Upload KTP</label><input type="file" required>
+<label>Upload KK</label><input type="file" required>
+<label>Upload Akte Lahir</label><input type="file" required>
+</div>
+
+<div id="polisi" class="hidden">
+<label>Surat Kehilangan Polisi</label>
+<input type="file">
+</div>
+
+<div id="paspor" class="hidden">
+<label>Halaman Data Paspor</label>
+<input type="file">
+</div>
+
+<div id="pengadilan" class="hidden">
+<label>Surat Penetapan Pengadilan</label>
+<input type="file">
+</div>
+
+<div id="pendukung" class="hidden">
+<label>Berkas Pendukung (Ijazah / Akte Nikah)</label>
+<input type="file">
+</div>
+
+<button type="submit">DAFTAR</button>
+</form>
+</div>
+
 <script>
 const params = new URLSearchParams(location.search);
 const tanggal = params.get("tanggal");
-
-if(!tanggal){
-  alert("Tanggal tidak valid");
-  location.href="jadwal.html";
-}
-
+if(!tanggal){alert("Tanggal tidak valid");location.href="jadwal.html";}
 document.getElementById("tanggalBAP").value = tanggal;
 
-const STORAGE_KEY = "kuotaBAP";
-let kuota = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
-
-if(kuota[tanggal] === "penuh"){
-  alert("Kuota tanggal ini sudah penuh");
-  location.href="jadwal.html";
-}
-
 const jenis = document.getElementById("jenis");
-const syaratUtama = document.getElementById("syaratUtama");
+const wajib = document.getElementById("wajib");
+const polisi = document.getElementById("polisi");
+const paspor = document.getElementById("paspor");
+const pengadilan = document.getElementById("pengadilan");
 const pendukung = document.getElementById("pendukung");
-const suratPolisi = document.getElementById("suratPolisi");
-const halamanPaspor = document.getElementById("halamanPaspor");
-const penetapanPengadilan = document.getElementById("penetapanPengadilan");
-
-function resetRequired(){
-  suratPolisi.querySelector("input").required = false;
-  halamanPaspor.querySelector("input").required = false;
-  penetapanPengadilan.querySelector("input").required = false;
-}
 
 jenis.onchange = ()=>{
-  syaratUtama.classList.remove("hidden");
+  wajib.classList.remove("hidden");
   pendukung.classList.remove("hidden");
 
-  suratPolisi.classList.add("hidden");
-  halamanPaspor.classList.add("hidden");
-  penetapanPengadilan.classList.add("hidden");
+  polisi.classList.add("hidden");
+  paspor.classList.add("hidden");
+  pengadilan.classList.add("hidden");
 
-  resetRequired();
+  polisi.querySelector("input").required=false;
+  paspor.querySelector("input").required=false;
+  pengadilan.querySelector("input").required=false;
 
   if(jenis.value==="hilang"){
-    suratPolisi.classList.remove("hidden");
-    suratPolisi.querySelector("input").required = true;
+    polisi.classList.remove("hidden");
+    polisi.querySelector("input").required=true;
   }
   if(jenis.value==="rusak"){
-    halamanPaspor.classList.remove("hidden");
-    halamanPaspor.querySelector("input").required = true;
+    paspor.classList.remove("hidden");
+    paspor.querySelector("input").required=true;
   }
   if(jenis.value==="perubahan"){
-    penetapanPengadilan.classList.remove("hidden");
-    penetapanPengadilan.querySelector("input").required = true;
+    pengadilan.classList.remove("hidden");
+    pengadilan.querySelector("input").required=true;
   }
 };
 
-document.getElementById("formDaftar").onsubmit = e=>{
+document.getElementById("formDaftar").onsubmit=e=>{
   e.preventDefault();
-  kuota[tanggal] = "penuh";
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(kuota));
+
+  const data = JSON.parse(localStorage.getItem("dataPemohon")||"[]");
+  data.push({tanggal,jenis:jenis.value});
+  localStorage.setItem("dataPemohon",JSON.stringify(data));
+
+  const kuota = JSON.parse(localStorage.getItem("kuotaBAP")||"{}");
+  kuota[tanggal]="penuh";
+  localStorage.setItem("kuotaBAP",JSON.stringify(kuota));
+
   alert("Pendaftaran berhasil");
   location.href="jadwal.html";
 };
 </script>
+
+</body>
+</html>
 
