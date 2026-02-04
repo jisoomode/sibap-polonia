@@ -1,181 +1,65 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<title>Pendaftaran BAP | SIBAP Polonia</title>
-
-<style>
-body{
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#f4f6f8;
-}
-
-header{
-  background:#0c3b5f;
-  color:#fff;
-  padding:35px;
-  text-align:center;
-}
-
-.container{
-  max-width:900px;
-  margin:40px auto;
-  background:#fff;
-  padding:40px;
-  border-radius:12px;
-}
-
-.info{
-  background:#f0f6fa;
-  border-left:6px solid #0c3b5f;
-  padding:20px;
-  margin-bottom:30px;
-  line-height:1.6;
-}
-
-label{
-  display:block;
-  margin-top:18px;
-  font-weight:bold;
-}
-
-input, select{
-  width:100%;
-  padding:12px;
-  margin-top:8px;
-  border:1px solid #ccc;
-  border-radius:6px;
-  font-size:15px;
-}
-
-button{
-  margin-top:30px;
-  width:100%;
-  padding:14px;
-  background:#0c3b5f;
-  color:#fff;
-  border:none;
-  border-radius:8px;
-  font-size:16px;
-  cursor:pointer;
-}
-
-button:disabled{
-  background:#aaa;
-  cursor:not-allowed;
-}
-
-.note{
-  margin-top:10px;
-  font-size:13px;
-  color:#555;
-}
-</style>
-</head>
-
-<body>
-
-<header>
-  <h1>Pendaftaran BAP Paspor</h1>
-  <p>Kantor Imigrasi Kelas I TPI Polonia</p>
-</header>
-
-<div class="container">
-
-  <div class="info">
-    <b>Pendaftaran ini merupakan pendaftaran awal.</b><br>
-    Setelah kelengkapan dokumen diverifikasi oleh petugas <b>Loket 3</b>,
-    pemohon wajib datang ke Kantor Imigrasi Kelas I TPI Polonia dengan membawa
-    seluruh dokumen untuk mendapatkan <b>Tanda Terima Kedatangan BAP</b>.
-  </div>
-
-  <form id="formDaftar">
-
-    <label>Tanggal BAP</label>
-    <input type="text" id="tanggalBAP" readonly>
-
-    <label>Nama Lengkap</label>
-    <input type="text" required>
-
-    <label>NIK</label>
-    <input type="text" maxlength="16" required>
-
-    <label>Nomor HP Aktif</label>
-    <input type="text" required>
-
-    <label>Jenis Permohonan</label>
-    <select id="jenisPermohonan" required>
-      <option value="">-- Pilih Jenis Permohonan --</option>
-      <option value="hilang">Paspor Hilang</option>
-      <option value="rusak">Paspor Rusak</option>
-      <option value="perubahan">Perubahan Data</option>
-    </select>
-
-    <label>Berkas Pendukung</label>
-    <input type="text" id="berkas" readonly>
-
-    <button type="submit">Kirim Pendaftaran</button>
-    <div class="note">*Tanggal mengikuti jadwal yang dipilih dan tidak dapat diubah</div>
-
-  </form>
-
-</div>
-
 <script>
-/* =============================
-   AMBIL TANGGAL DARI JADWAL
-============================= */
-const params = new URLSearchParams(window.location.search);
-const tanggal = params.get("tanggal"); // format: 2026-04-01
+const params = new URLSearchParams(location.search);
+const tanggal = params.get("tanggal");
 
 if(!tanggal){
   alert("Tanggal tidak valid");
-  window.location.href = "jadwal.html";
+  location.href="jadwal.html";
 }
 
 document.getElementById("tanggalBAP").value = tanggal;
 
-/* =============================
-   CEK KUOTA (ADMIN)
-============================= */
-let kuota = JSON.parse(localStorage.getItem("kuotaBAP")) || {};
+const STORAGE_KEY = "kuotaBAP";
+let kuota = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
 
 if(kuota[tanggal] === "penuh"){
   alert("Kuota tanggal ini sudah penuh");
-  window.location.href = "jadwal.html";
+  location.href="jadwal.html";
 }
 
-/* =============================
-   BERKAS OTOMATIS
-============================= */
-const jenis = document.getElementById("jenisPermohonan");
-const berkas = document.getElementById("berkas");
+const jenis = document.getElementById("jenis");
+const syaratUtama = document.getElementById("syaratUtama");
+const pendukung = document.getElementById("pendukung");
+const suratPolisi = document.getElementById("suratPolisi");
+const halamanPaspor = document.getElementById("halamanPaspor");
+const penetapanPengadilan = document.getElementById("penetapanPengadilan");
 
-jenis.addEventListener("change", ()=>{
-  if(jenis.value === "hilang" || jenis.value === "rusak"){
-    berkas.value = "Ijazah / Buku Nikah";
-  } else if(jenis.value === "perubahan"){
-    berkas.value = "Surat Putusan Pengadilan, Ijazah, Buku Nikah";
-  } else {
-    berkas.value = "";
+function resetRequired(){
+  suratPolisi.querySelector("input").required = false;
+  halamanPaspor.querySelector("input").required = false;
+  penetapanPengadilan.querySelector("input").required = false;
+}
+
+jenis.onchange = ()=>{
+  syaratUtama.classList.remove("hidden");
+  pendukung.classList.remove("hidden");
+
+  suratPolisi.classList.add("hidden");
+  halamanPaspor.classList.add("hidden");
+  penetapanPengadilan.classList.add("hidden");
+
+  resetRequired();
+
+  if(jenis.value==="hilang"){
+    suratPolisi.classList.remove("hidden");
+    suratPolisi.querySelector("input").required = true;
   }
-});
+  if(jenis.value==="rusak"){
+    halamanPaspor.classList.remove("hidden");
+    halamanPaspor.querySelector("input").required = true;
+  }
+  if(jenis.value==="perubahan"){
+    penetapanPengadilan.classList.remove("hidden");
+    penetapanPengadilan.querySelector("input").required = true;
+  }
+};
 
-/* =============================
-   SUBMIT → KURANGI KUOTA
-============================= */
-document.getElementById("formDaftar").addEventListener("submit", function(e){
+document.getElementById("formDaftar").onsubmit = e=>{
   e.preventDefault();
-
   kuota[tanggal] = "penuh";
-  localStorage.setItem("kuotaBAP", JSON.stringify(kuota));
-
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(kuota));
   alert("Pendaftaran berhasil");
-  window.location.href = "jadwal.html";
-});
+  location.href="jadwal.html";
+};
 </script>
-
-</body>
-</html>
 
