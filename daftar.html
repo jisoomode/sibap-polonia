@@ -3,94 +3,50 @@
 <head>
 <meta charset="UTF-8">
 <title>Pendaftaran BAP | SIBAP Polonia</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 body{
   margin:0;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#eef3f8;
+  font-family:Arial, sans-serif;
+  background:#f4f6f8;
 }
 
 header{
   background:#0c3b5f;
   color:#fff;
-  padding:28px;
+  padding:35px;
   text-align:center;
 }
 
-header h1{
-  margin:0;
-  font-size:22px;
-}
-
-header p{
-  margin-top:6px;
-  font-size:14px;
-  opacity:.9;
-}
-
 .container{
-  max-width:850px;
-  margin:35px auto;
+  max-width:900px;
+  margin:40px auto;
   background:#fff;
-  padding:35px;
+  padding:40px;
   border-radius:12px;
-  box-shadow:0 4px 14px rgba(0,0,0,.12);
 }
 
-.section-title{
-  font-size:18px;
-  color:#0c3b5f;
-  margin-bottom:20px;
-  font-weight:bold;
+.info{
+  background:#f0f6fa;
+  border-left:6px solid #0c3b5f;
+  padding:20px;
+  margin-bottom:30px;
+  line-height:1.6;
 }
 
 label{
   display:block;
-  margin-top:16px;
+  margin-top:18px;
   font-weight:bold;
 }
 
 input, select{
   width:100%;
-  padding:11px;
-  margin-top:7px;
+  padding:12px;
+  margin-top:8px;
   border:1px solid #ccc;
   border-radius:6px;
-  font-size:14px;
-}
-
-.file-box{
-  background:#f4f7fb;
-  padding:18px;
-  border-radius:10px;
-  margin-top:18px;
-  border-left:6px solid #0c3b5f;
-}
-
-.file-box h4{
-  margin-top:0;
-  color:#0c3b5f;
-}
-
-.notice{
-  background:#eef5ff;
-  padding:18px;
-  border-radius:10px;
-  margin-top:25px;
-  font-size:14px;
-  line-height:1.6;
-}
-
-.badge{
-  display:inline-block;
-  background:#ffc107;
-  color:#000;
-  padding:4px 10px;
-  border-radius:20px;
-  font-size:13px;
-  font-weight:bold;
+  font-size:15px;
 }
 
 button{
@@ -105,15 +61,10 @@ button{
   cursor:pointer;
 }
 
-button:hover{
-  background:#092f4d;
-}
-
-.footer{
-  text-align:center;
-  margin:25px 0;
+.note{
+  margin-top:15px;
   font-size:13px;
-  color:#666;
+  color:#555;
 }
 </style>
 </head>
@@ -121,142 +72,126 @@ button:hover{
 <body>
 
 <header>
-  <h1>KANTOR IMIGRASI KELAS I TPI POLONIA</h1>
-  <p>Sistem Informasi BAP Paspor (SIBAP)</p>
+  <h1>Pendaftaran BAP Paspor</h1>
+  <p>Kantor Imigrasi Kelas I TPI Polonia</p>
 </header>
 
 <div class="container">
-<div class="section-title">Form Pendaftaran BAP</div>
 
-<form id="formDaftar">
+  <div class="info">
+    <b>Pendaftaran ini merupakan pendaftaran awal.</b><br>
+    Setelah dokumen diverifikasi oleh petugas <b>Loket 3</b>,
+    pemohon <b>wajib datang langsung</b> ke Kantor Imigrasi Kelas I TPI Polonia
+    dengan membawa dokumen asli untuk mendapatkan
+    <b>Tanda Terima Kedatangan BAP</b>.
+  </div>
 
-<label>Tanggal BAP</label>
-<input type="text" id="tanggalBAP" readonly>
+  <form id="formDaftar">
 
-<label>Nama Lengkap</label>
-<input type="text" required>
+    <label>Tanggal BAP</label>
+    <input type="text" id="tanggalBAP" readonly>
 
-<label>NIK</label>
-<input type="text" maxlength="16" required>
+    <label>Nama Lengkap</label>
+    <input type="text" required>
 
-<label>Nomor HP (WhatsApp Aktif)</label>
-<input type="text" required>
+    <label>NIK</label>
+    <input type="text" maxlength="16" required>
 
-<label>Pekerjaan</label>
-<input type="text" required>
+    <label>Nomor WhatsApp Aktif</label>
+    <input type="text" required>
 
-<label>Tujuan Penggunaan Paspor</label>
-<select required>
-  <option value="">-- Pilih Tujuan --</option>
-  <option>Wisata</option>
-  <option>Pekerjaan</option>
-  <option>Pendidikan</option>
-  <option>Ibadah</option>
-  <option>Lainnya</option>
-</select>
+    <label>Pekerjaan</label>
+    <input type="text" required>
 
-<label>Jenis Permohonan</label>
-<select id="jenis" required>
-  <option value="">-- Pilih --</option>
-  <option value="hilang">Paspor Hilang</option>
-  <option value="rusak">Paspor Rusak</option>
-  <option value="perubahan">Perubahan Data</option>
-</select>
+    <label>Tujuan Penggunaan Paspor</label>
+    <input type="text" required>
 
-<div id="berkas"></div>
+    <label>Jenis Permohonan</label>
+    <select id="jenisPermohonan" required>
+      <option value="">-- Pilih Jenis Permohonan --</option>
+      <option value="hilang">Paspor Hilang</option>
+      <option value="rusak">Paspor Rusak</option>
+      <option value="perubahan">Perubahan Data</option>
+    </select>
 
-<div class="notice">
-<b>Informasi Penting:</b><br><br>
-Pemeriksaan dan keputusan akhir dilakukan di
-<span class="badge">Loket 3</span>.<br><br>
-Apabila permohonan <b>disetujui</b>, pemohon <b>wajib datang langsung</b>
-ke Kantor Imigrasi Kelas I TPI Polonia dengan membawa seluruh dokumen asli
-dan salinannya untuk mendapatkan
-<b>Tanda Terima Kedatangan BAP</b> dari Loket 3.
-</div>
+    <div class="note" id="syaratText"></div>
 
-<button type="submit">Kirim Pendaftaran</button>
-</form>
-</div>
+    <button type="submit">Lanjut ke Upload Dokumen</button>
 
-<div class="footer">
-© Kantor Imigrasi Kelas I TPI Polonia
+    <div class="note">
+      *Upload dokumen dilakukan melalui Google Form resmi SIBAP Polonia
+    </div>
+
+  </form>
+
 </div>
 
 <script>
-// === TANGGAL DARI JADWAL ===
+/* =========================
+   AMBIL TANGGAL DARI JADWAL
+========================= */
 const params = new URLSearchParams(window.location.search);
-let tanggal = params.get("tanggal");
+const tanggal = params.get("tanggal");
 
 if(!tanggal){
-  document.body.innerHTML="<h2 style='text-align:center'>Tanggal tidak valid</h2>";
-  throw new Error("Tanggal kosong");
+  alert("Tanggal tidak valid");
+  window.location.href = "jadwal.html";
 }
 
-document.getElementById("tanggalBAP").value = decodeURIComponent(tanggal);
+document.getElementById("tanggalBAP").value = tanggal;
 
-// === BERKAS ===
-const jenis = document.getElementById("jenis");
-const berkas = document.getElementById("berkas");
+/* =========================
+   LINK GOOGLE FORM
+========================= */
+const formLink = {
+  hilang: "https://drive.google.com/open?id=1vxujDCu0GC8ztApNFz0n0R0zTnzPmFC2Q6Uk0fffnmI",
+  rusak: "https://drive.google.com/open?id=1olsBJl8umYOWUh7IpaoaWw5lqIP5d4-YVa5t-x6qZXU",
+  perubahan: "https://drive.google.com/open?id=1Txa44dP0VgdWo52owapgXkeaC8t6oACEKxkmhShCzmM"
+};
 
-jenis.addEventListener("change",()=>{
-  let html="";
+/* =========================
+   TAMPILKAN SYARAT
+========================= */
+const jenis = document.getElementById("jenisPermohonan");
+const syarat = document.getElementById("syaratText");
 
-  if(jenis.value==="hilang"){
-    html=`
-    <div class="file-box">
-      <h4>Dokumen Wajib</h4>
-      KTP <input type="file" required><br><br>
-      KK <input type="file" required><br><br>
-      Akte Kelahiran <input type="file" required><br><br>
-      Surat Kehilangan dari Kepolisian <input type="file" required><br><br>
-      Halaman Data Paspor <input type="file" required>
-    </div>
-    <div class="file-box">
-      <h4>Berkas Pendukung</h4>
-      Ijazah / Akte Nikah <input type="file">
-    </div>`;
+jenis.addEventListener("change", ()=>{
+  if(jenis.value === "hilang"){
+    syarat.innerHTML = `
+      <b>Syarat Wajib:</b><br>
+      KTP, KK, Akta Kelahiran, Surat Keterangan Kehilangan Polisi, Halaman Data Paspor<br>
+      <b>Berkas Pendukung:</b> Ijazah / Akta Nikah
+    `;
+  } else if(jenis.value === "rusak"){
+    syarat.innerHTML = `
+      <b>Syarat Wajib:</b><br>
+      KTP, KK, Akta Kelahiran, Halaman Data Paspor<br>
+      <b>Berkas Pendukung:</b> Ijazah / Akta Nikah
+    `;
+  } else if(jenis.value === "perubahan"){
+    syarat.innerHTML = `
+      <b>Syarat Wajib:</b><br>
+      KTP, KK, Akta Kelahiran, Surat Penetapan Pengadilan<br>
+      <b>Berkas Pendukung:</b> Ijazah / Akta Nikah
+    `;
+  } else {
+    syarat.innerHTML = "";
   }
-
-  if(jenis.value==="rusak"){
-    html=`
-    <div class="file-box">
-      <h4>Dokumen Wajib</h4>
-      KTP <input type="file" required><br><br>
-      KK <input type="file" required><br><br>
-      Akte Kelahiran <input type="file" required><br><br>
-      Halaman Data Paspor <input type="file" required>
-    </div>
-    <div class="file-box">
-      <h4>Berkas Pendukung</h4>
-      Ijazah / Akte Nikah <input type="file">
-    </div>`;
-  }
-
-  if(jenis.value==="perubahan"){
-    html=`
-    <div class="file-box">
-      <h4>Dokumen Wajib</h4>
-      KTP <input type="file" required><br><br>
-      KK <input type="file" required><br><br>
-      Akte Kelahiran <input type="file" required><br><br>
-      Surat Penetapan Pengadilan <input type="file" required>
-    </div>
-    <div class="file-box">
-      <h4>Berkas Pendukung</h4>
-      Ijazah / Akte Nikah <input type="file">
-    </div>`;
-  }
-
-  berkas.innerHTML = html;
 });
 
-// === SIMPAN KE ADMIN ===
-document.getElementById("formDaftar").addEventListener("submit",()=>{
-  let data = JSON.parse(localStorage.getItem("pendaftaran") || "[]");
-  data.push({tanggal,jenis:jenis.value,waktu:new Date().toLocaleString()});
-  localStorage.setItem("pendaftaran",JSON.stringify(data));
-  alert("Pendaftaran berhasil dikirim");
+/* =========================
+   SUBMIT → REDIRECT FORM
+========================= */
+document.getElementById("formDaftar").addEventListener("submit", function(e){
+  e.preventDefault();
+
+  if(!jenis.value){
+    alert("Pilih jenis permohonan");
+    return;
+  }
+
+  // redirect ke Google Form sesuai jenis
+  window.location.href = formLink[jenis.value] + "&tanggal=" + encodeURIComponent(tanggal);
 });
 </script>
 
